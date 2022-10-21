@@ -23,7 +23,9 @@ import {
 
 dotenv.config();
 const app = express();
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(cookieParser());

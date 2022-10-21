@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RecordingInfo } from 'openvidu-angular';
 import { lastValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +11,11 @@ export class RestService {
 	private baseHref: string;
 
 	constructor(private http: HttpClient) {
-		this.baseHref = '/' + (!!window.location.pathname.split('/')[1] ? window.location.pathname.split('/')[1] + '/' : '');
+		if (environment.openvidu_url && environment.openvidu_url.length > 0) {
+			this.baseHref = environment.openvidu_url;
+		} else {
+			this.baseHref = '/' + (!!window.location.pathname.split('/')[1] ? window.location.pathname.split('/')[1] + '/' : '');
+		}
 	}
 
 	async login(username: string, password: string): Promise<{ logged: boolean }> {

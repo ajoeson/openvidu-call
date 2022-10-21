@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  openvidu_url: '',
+  openvidu_url: 'http://localhost:5001/',
   openvidu_secret: ''
 };
 
